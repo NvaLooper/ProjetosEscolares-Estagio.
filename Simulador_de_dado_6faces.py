@@ -1,3 +1,4 @@
+#Simulação de um dado de 6 faces
 while True:
     Resposta = input("Você gostaria de girar o dado? ")
     if Resposta == "Sim" or Resposta == "sim" or Resposta == "S":
@@ -14,4 +15,3 @@ while True:
         print("")
     else:
         break
-
