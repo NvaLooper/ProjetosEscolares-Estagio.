@@ -1,5 +1,5 @@
 #Média dos alunos
-Identificação = input("Qual o nome do aluno?\n")
+Identificação = input("Qual o nome do aluno? ")
 print("")
 
 while True:
