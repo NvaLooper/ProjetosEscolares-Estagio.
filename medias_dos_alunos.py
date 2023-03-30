@@ -14,8 +14,6 @@ while True:
         print("")
         NT5 = float(input("A quinta nota: "))
         print("")
-    except NameError:
-        print("Valor impossível")
 
     except ValueError:
         print("\n","A nota deve ser escrita em números, tente novamente.","\n")
