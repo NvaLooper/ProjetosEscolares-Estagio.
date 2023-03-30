@@ -1,7 +1,8 @@
 #Simulação de um dado de 6 faces
 while True:
     Resposta = input("Você gostaria de girar o dado? ")
-    if Resposta == "Sim" or Resposta == "sim" or Resposta == "S" or Resposta == "s":
+    minR = Resposta.lower()
+    if minR == "sim" or minR == "s":
          print("")
          break   
     else:
@@ -13,11 +14,12 @@ print("O número gerado foi:",randint(1,6),"\n")
 while True:
     
     GirarNov = input("Você quer gerar um número novamente? ")
-    if GirarNov == "Sim" or GirarNov == "sim" or GirarNov == "S" or GirarNov == "s":
+    minG = GirarNov.lower()
+    if minG == "sim" or minG == "s":
         from random import randint
         print("\n","O número gerado foi:",randint(1,6),"\n")
         
-    elif GirarNov == "Não" or GirarNov == "não" or GirarNov == "N" or GirarNov == "n": 
+    elif minG == "não" or minG == "n": 
         print("\n","------- Obrigado por jogar :) -------","\n")
         break
     else:
