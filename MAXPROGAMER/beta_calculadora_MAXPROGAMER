@@ -6,66 +6,68 @@
 #try - Ele tenta fazer o que foi pedido, se não conseguir ele faz volta e tenta novamente. Junto com a função except e finally.
 #except - Junto com a função try, ele espera um tipo de erro, se esse erro acontecer ele faz o que você digitar depois dos dois pontos.
 #.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
-
 print("CALCULATOR MAXPROGAMER\n")
 while True:
-    BA = float(input("Você quer utilizar a calculadora básica ou avançada?\n 1 - Básica.\n 2 - Avançada.\n")) #Básico;Avançado
-    if BA == 1:
-        print("---- Escolha dois números ----\n")
-        try:
-            a=float(input("Primeiro número: "))
-            print("")
-            b=float(input("Segundo número: "))
-            print("\n")
-        except ValueError:
-            print("\n","-------*Você não escolheu números válidos*-------","\n")
-        else:
-            print("Escolha o tipo de conta:\n 1- Divisão\n 2- Multiplicação\n 3- Subtração\n 4- Soma\n 5- Potenciação\n 6- Radiciação  \n\n")
-            while True:    
-                try:
-                    TDC = float(input("Você escolheu a operação número: ")) #Tipo de Conta
-                    print("")
+    try:
+        BA = float(input("Você quer utilizar a calculadora básica ou avançada?\n 1 - Básica.\n 2 - Expressão Matemática.\n")) #Básico;Avançado
+    except ValueError:
+        print("\n","Escolha um modo válido","\n")
+    else:
+        if BA == 1:
+            print("---- Escolha dois números ----\n")
+            try:
+                a=float(input("Primeiro número: "))
+                print("")
+                b=float(input("Segundo número: "))
+                print("\n")
+            except ValueError:
+                print("\n","-------*Você não escolheu números válidos*-------""\n",)
+            else:
+                print("Escolha o tipo de conta:\n 1- Divisão\n 2- Multiplicação\n 3- Subtração\n 4- Soma\n 5- Potenciação\n 6- Radiciação  \n\n")
+                while True:    
+                    try:
+                        TDC = float(input("Você escolheu a operação número: ")) #Tipo de Conta
+                        print("")
 
-                except ValueError: 
-                    print("\n","------- Você não escolheu uma operação válida, tente novamente -------","\n")
-
-                else:
-                    if TDC == 1:
-                        while b==0:
-                            print("Escreva um segundo número novamente, pelas regras matemáticas 0\nnão pode ser o denominador de nenhuma conta de divisão.\n")
-                            b=int(input())
-                        print(a,"/",b,"=", a/b)  
-                        break
-
-                    elif TDC == 2:
-                        print(a,"x",b,"=", a*b)
-                        break 
-
-                    elif TDC == 3:
-                        print(a,"-",b,"=", a-b)
-                        break 
-
-                    elif TDC == 4:
-                        print(a,"+",b,"=", a+b)
-                        break
-
-                    elif TDC == 5:
-                        print(a,"^",b,"=", pow(a,b)) 
-                        break
-
-                    elif TDC == 6:
-                        print("O primeiro número refere ao índice da raiz e o segundo é o valor que será racionalizado")
-                        print(b,"√",a,"=", pow(a, 1/b))
-                        break
+                    except ValueError: 
+                        print("\n","------- Você não escolheu uma operação válida, tente novamente -------","\n")
 
                     else:
-                        print("\n","------- Você não escolheu uma operação válida, tente novamente -------","\n")
+                        if TDC == 1:
+                            while b==0:
+                                print("Escreva um segundo número novamente, pelas regras matemáticas 0\nnão pode ser o denominador de nenhuma conta de divisão.\n")
+                                b=int(input())
+                            print(a,"/",b,"=", a/b)  
+                            break
+
+                        elif TDC == 2:
+                            print(a,"x",b,"=", a*b)
+                            break 
+
+                        elif TDC == 3:
+                            print(a,"-",b,"=", a-b)
+                            break 
+
+                        elif TDC == 4:
+                            print(a,"+",b,"=", a+b)
+                            break
+
+                        elif TDC == 5:
+                            print(a,"^",b,"=", pow(a,b)) 
+                            break
+
+                        elif TDC == 6:
+                            print("O primeiro número refere ao índice da raiz e o segundo é o valor que será racionalizado")
+                            print(b,"√",a,"=", pow(a, 1/b))
+                            break
+
+                        else:
+                            print("\n","------- Você não escolheu uma operação válida, tente novamente -------","\n")
         
-           
-    elif BA == 2:
-        calculo_avancado = input("Digite a expressão matemática que você quer trabalhar\n")
-        RDCA = eval(calculo_avancado) #Resultado do calculo avançado
-        print("O resultado da expressão matemática é:", RDCA)
+        elif BA == 2:
+                exp_mat = input("Digite a expressão matemática que você quer trabalhar.\n")
+                RDEM = eval(exp_mat) #Resultado da expressão matemática.
+                print("O resultado da expressão matemática é:", RDEM)
  
     parar = input("Se quiser parar a calculadora digite STOP, se não aperte enter.\n")
     min = parar.lower()
