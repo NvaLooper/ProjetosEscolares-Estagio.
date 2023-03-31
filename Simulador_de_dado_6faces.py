@@ -1,4 +1,10 @@
-#Simulação de um dado de 6 faces
+#Introdução das funções utilizadas:
+
+#while - Como no inglês representa enquanto, serve para criar um loop. Se você quiser parar o loop precisa quebra-lo com a variável Break
+#.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
+#from random import randint - Da biblioteca random importa a função randint
+#randint - Gera números aleatórios, dentro dos números que você colocar como limite. 
+
 while True:
     Resposta = input("Você gostaria de girar o dado? ")
     minR = Resposta.lower()
