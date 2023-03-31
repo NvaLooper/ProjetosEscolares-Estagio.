@@ -1,4 +1,13 @@
-#Média dos alunos
+#Intruções das funções utilizadas:
+
+#while - Como no inglês representa enquanto, serve para criar um loop. Se você quiser parar o loop precisa quebra-lo com a variável Break.
+#try - Ele tenta fazer o que foi pedido, se não conseguir ele faz volta e tenta novamente. Junto com a função except e finally.
+#except - Junto com a função try, ele espera um tipo de erro, se esse erro acontecer ele faz o que você digitar depois dos dois pontos.
+#.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
+#"\n"- Serve para pular uma linha e pode ser usado repetidamente.
+#sum - Soma os números dentro de uma lista.
+#min/max - Pega o menor ou o maior número da lista.
+
 Identificação = input("Qual o nome do aluno? ")
 print("")
 
@@ -14,7 +23,7 @@ while True:
         print("")
         NT5 = float(input("A quinta nota: "))
         print("")
-
+        
     except ValueError:
         print("\n","A nota deve ser escrita em números, tente novamente.","\n")
 
