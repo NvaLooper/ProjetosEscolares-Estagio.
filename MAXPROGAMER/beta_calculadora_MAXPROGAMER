@@ -8,11 +8,10 @@
 #.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
 
 print("CALCULATOR MAXPROGAMER\n")
-
-BC = input("Você quer utilizar a calculadora básica ou avançada?\n 1 - Básica\n 2 - Avançada\n\n")
-if BC == 1:
-    print("---- Escolha dois números ----\n")
-    while True:
+while True:
+    BA = float(input("Você quer utilizar a calculadora básica ou avançada?\n 1 - Básica.\n 2 - Avançada.\n")) #Básico;Avançado
+    if BA == 1:
+        print("---- Escolha dois números ----\n")
         try:
             a=float(input("Primeiro número: "))
             print("")
@@ -24,7 +23,7 @@ if BC == 1:
             print("Escolha o tipo de conta:\n 1- Divisão\n 2- Multiplicação\n 3- Subtração\n 4- Soma\n 5- Potenciação\n 6- Radiciação  \n\n")
             while True:    
                 try:
-                    TDC = float(input("Você escolheu a operação número: ")) #Tipo de conta
+                    TDC = float(input("Você escolheu a operação número: ")) #Tipo de Conta
                     print("")
 
                 except ValueError: 
@@ -62,14 +61,16 @@ if BC == 1:
                     else:
                         print("\n","------- Você não escolheu uma operação válida, tente novamente -------","\n")
         
-            parar = input("Se quiser parar a calculadora digite STOP, se não aperte enter.\n")
-            min = parar.lower()
-            if min == "stop" or min == "parar":
-                print("\n","------- Obrigado por usar a calculadora MAXPROGAMER -------","\n")
-                break
-            else:
-                print ("---- Escolha novamente dois números ----\n")
-elif BC == 2:
-    calculo_avancado = input("Digite a expressão matemática que você quer trabalhar\n")
-    RDCA = eval(calculo_avancado)
-    print("O resultado da expressão matemática é:", RDCA)
+           
+    elif BA == 2:
+        calculo_avancado = input("Digite a expressão matemática que você quer trabalhar\n")
+        RDCA = eval(calculo_avancado) #Resultado do calculo avançado
+        print("O resultado da expressão matemática é:", RDCA)
+ 
+    parar = input("Se quiser parar a calculadora digite STOP, se não aperte enter.\n")
+    min = parar.lower()
+    if min == "stop" or min == "parar":
+        print("\n","------- Obrigado por usar a calculadora MAXPROGAMER -------","\n")
+        break
+    else:
+        print ("---- Escolha novamente o modo da calculadora ----\n")
