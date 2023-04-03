@@ -16,7 +16,7 @@ while True:
     else:
         while True:
             if BA == 1:
-                print("-> Escolha o tipo de conta:\n\n ┋1 - Divisão       (÷) ┋\n ┋2 - Multiplicação (×) ┋\n ┋3 - Subtração     (-) ┋\n ┋4 - Soma          (+) ┋\n ┋5 - Potenciação   (^) ┋\n ┋6 - Radiciação    (√) ┋  \n\n")   
+                print("-> Escolha o tipo de conta:\n\n ┋1 - Divisão       (÷) ┋\n ┋2 - Multiplicação (x) ┋\n ┋3 - Subtração     (-) ┋\n ┋4 - Soma          (+) ┋\n ┋5 - Potenciação   (^) ┋\n ┋6 - Radiciação    (√) ┋  \n\n")   
                 try:
                     TDC = float(input("-> A operação que deseja trabalhar é: ")) #(TDC)Tipo de Conta
                     print("")
@@ -26,15 +26,14 @@ while True:
                 else:
                     if TDC == 1:
                         while True:
-                            try:
-                                D1 = float(input("Você escolheu divisão\n-> Escolha o numerador: \n")) #(D1) Divisão um
-                                D2 = float(input("-> Escolha o denominador:\n")) #(D2) Divisão dois
-                            except ZeroDivisionError:
-                                print("Escreva um segundo número novamente, pelas regras matemáticas 0 não pode ser\no denominador de nenhuma conta de divisão.\n")
-                                D2=float(input())
-                            else:
-                                print(D1,"/",D2,"=", D1/D2)  
-                                break
+                                try:
+                                    D1 = float(input("Você escolheu divisão\n-> Escolha o numerador: \n")) #(D1) Divisão um
+                                    D2 = float(input("-> Escolha o denominador:\n")) #(D2) Divisão dois   
+                                    print(D1,"/",D2,"=", D1/D2) 
+                                except ZeroDivisionError:
+                                    print("Escreva um segundo número novamente, pelas regras matemáticas 0 não pode ser\no denominador de nenhuma conta de divisão.\n")
+                                else:
+                                    break
                     
                     elif TDC == 2:
                         while True:
@@ -73,7 +72,7 @@ while True:
                             break
                     else:
                         print("------- Você não escolheu uma operação válida, tente novamente -------","\n") 
-            M = input("\nVocê deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR.\n") #(M) Modo
+            M = input("\nVocê deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR.\nSe quiser continuar aperte enter...\n") #(M) Modo
             MM = M.lower() #(MM) Mudar Modo
             if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode":
                 break
@@ -96,4 +95,3 @@ while True:
     if min == "desligar" or min == "off" or min == "desliga":
         print("\n","------- Obrigado por usar a calculadora MAXPROGAMER -------","\n")
         break
-    
