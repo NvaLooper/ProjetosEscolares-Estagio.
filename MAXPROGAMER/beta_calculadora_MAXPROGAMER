@@ -10,13 +10,13 @@
 print("CALCULATOR MAXPROGAMER\n")
 while True:
     try:
-        BA = float(input("Você quer utilizar a calculadora básica ou avançada?\n 1 - Básica.\n 2 - Expressão Matemática.\n")) #(BA)Básico;Avançado
+        BA = float(input("Bem vindo ao menu principal:\n 1 - Básica.\n 2 - Expressão Matemática.\n")) #(BA)Básico;Avançado
     except ValueError:
         print("\n","Você não escolheu um modo, aperte enter e tente novamente:","\n")
     else:
         while True:
             if BA == 1:
-                print("-> Escolha o tipo de conta:\n\n ┋1-Divisão      ┋\n ┋2-Multiplicação┋\n ┋3-Subtração    ┋\n ┋4-Soma         ┋\n ┋5-Potenciação  ┋\n ┋6-Radiciação   ┋  \n\n")   
+                print("-> Escolha o tipo de conta:\n\n ┋1 - Divisão       (÷) ┋\n ┋2 - Multiplicação (×) ┋\n ┋3 - Subtração     (-) ┋\n ┋4 - Soma          (+) ┋\n ┋5 - Potenciação   (^) ┋\n ┋6 - Radiciação    (√) ┋  \n\n")   
                 try:
                     TDC = float(input("-> A operação que deseja trabalhar é: ")) #(TDC)Tipo de Conta
                     print("")
@@ -73,9 +73,9 @@ while True:
                             break
                     else:
                         print("------- Você não escolheu uma operação válida, tente novamente -------","\n") 
-            M = input("\nVocê deseja mudar de modo ou parar a calculadora? Se sim, digite MODO, se não aperte enter.\n")
-            MM = M.lower()
-            if MM == "modo":
+            M = input("\nVocê deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR.\n") #(M) Modo
+            MM = M.lower() #(MM) Mudar Modo
+            if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode":
                 break
 
             
@@ -91,10 +91,9 @@ while True:
             else:
                 print("\n","Escolha um modo válido","\n")
 
-    parar = input("\nSe quiser parar a calculadora digite STOP, se não aperte enter.\n")
-    min = parar.lower()
-    if min == "stop" or min == "parar":
+    desligar = input("\nSe quiser desligar a calculadora digite OFF, se não aperte enter.\n")
+    min = desligar.lower()
+    if min == "desligar" or min == "off" or min == "desliga":
         print("\n","------- Obrigado por usar a calculadora MAXPROGAMER -------","\n")
         break
-    else:
-        print ("---- Escolha novamente o modo da calculadora ----\n")
+    
