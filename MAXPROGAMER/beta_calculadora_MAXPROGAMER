@@ -6,13 +6,12 @@
 #try - Ele tenta fazer o que foi pedido, se não conseguir ele faz volta e tenta novamente. Junto com a função except e finally.
 #except - Junto com a função try, ele espera um tipo de erro, se esse erro acontecer ele faz o que você digitar depois dos dois pontos.
 #.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
-
 print("CALCULATOR MAXPROGAMER\n")
 while True:
     try:
         BA = float(input("Você quer utilizar a calculadora básica ou avançada?\n 1 - Básica.\n 2 - Expressão Matemática.\n")) #Básico;Avançado
     except ValueError:
-        print("\n","Escolha um modo válido","\n")
+        print("\n","Você não escolheu um modo, aperte enter e tente novamente:","\n")
     else:
         if BA == 1:
             print("---- Escolha dois números ----\n")
@@ -38,28 +37,37 @@ while True:
                                 b=int(input())
                             print(a,"/",b,"=", a/b)  
                             break
+
                         elif TDC == 2:
                             print(a,"x",b,"=", a*b)
                             break 
+
                         elif TDC == 3:
                             print(a,"-",b,"=", a-b)
                             break 
+
                         elif TDC == 4:
                             print(a,"+",b,"=", a+b)
                             break
+
                         elif TDC == 5:
                             print(a,"^",b,"=", pow(a,b)) 
                             break
+
                         elif TDC == 6:
                             print("O primeiro número refere ao índice da raiz e o segundo é o valor que será racionalizado")
                             print(b,"√",a,"=", pow(a, 1/b))
                             break
+
                         else:
                             print("\n","------- Você não escolheu uma operação válida, tente novamente -------","\n")
         elif BA == 2:
                 exp_mat = input("Digite a expressão matemática que você quer trabalhar.\n")
                 RDEM = eval(exp_mat) #Resultado da expressão matemática.
                 print("O resultado da expressão matemática é:", RDEM)
+        else:
+            print("\n","Escolha um modo válido","\n")
+
     parar = input("Se quiser parar a calculadora digite STOP, se não aperte enter.\n")
     min = parar.lower()
     if min == "stop" or min == "parar":
