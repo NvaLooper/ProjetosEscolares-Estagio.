@@ -1,1 +1,93 @@
-q
+def soma():
+    print("Bem vindo ao modo adição")
+    while True:
+        try:
+            lista = []
+            tamanho_da_lista = float(input("Quantidade de números que terá na lista: "))
+            print("Escreva por ordem os números da lista:")
+            C = 0
+            while C!=tamanho_da_lista:
+                C = C+1 
+                lista.append(input())
+        except (ValueError, SyntaxError,TypeError):
+            print("\n✖  Os números digitados não são válidos ✖")
+        else:
+            print("O resultado a adição é:",lista)
+        Parar = input("\nSe quiser parar a adição escreva PARAR\nSe quiser continuar aperte enter...\n")
+        min = Parar.lower()
+        if min == "parar":
+            break
+soma()
+
+---------------------------------------------------
+
+quantidade_numeros = int(input("Digite a quantidade de números que você deseja somar: "))
+
+numeros = []
+for i in range(quantidade_numeros):
+    numero = float(input("Digite o número {}: ".format(i+1)))
+    numeros.append(numero)
+
+soma = sum(numeros)
+
+print("A soma dos números digitados é: {}".format(soma))
+
+----------------------------------------
+
+quantidade = int(input("Quantos números deseja multiplicar? "))
+
+resultado = 1
+for i in range(quantidade):
+    numero = float(input("Digite o número {}: ".format(i+1)))
+    resultado *= numero
+
+print("O resultado da multiplicação é: ", resultado)
+
+----------------------------------------
+
+quantidade = int(input("Quantos números deseja subtrair? "))
+
+resultado = 0
+for i in range(quantidade):
+    numero = float(input("Digite o número {}: ".format(i+1)))
+    if i == 0:
+        resultado = numero
+    else:
+        resultado -= numero
+
+print("O resultado da subtração é: ", resultado)
+
+----------------------------------------
+
+quantidade = int(input("Quantos números deseja dividir? "))
+
+resultado = 0
+for i in range(quantidade):
+    numero = float(input("Digite o número {}: ".format(i+1)))
+    if i == 0:
+        resultado = numero
+    else:
+        resultado /= numero
+
+print("O resultado da divisão é: ", resultado)
+
+-----------------------------------------
+
+import math
+
+operacao = input("Qual operação você deseja fazer? (rad/pot): ")
+
+if operacao == "rad":
+    num = float(input("Digite o número: "))
+    raiz = int(input("Digite o índice da raiz: "))
+    resultado = math.pow(num, 1/raiz)
+    print(f"A raiz {raiz} de {num} é {resultado:.2f}")
+    
+elif operacao == "pot":
+    base = float(input("Digite a base: "))
+    expoente = float(input("Digite o expoente: "))
+    resultado = math.pow(base, expoente)
+    print(f"{base} elevado a {expoente} é igual a {resultado:.2f}")
+    
+else:
+    print("Operação inválida.")
