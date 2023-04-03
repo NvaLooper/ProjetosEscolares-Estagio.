@@ -6,7 +6,6 @@
 #try - Ele tenta fazer o que foi pedido, se não conseguir ele faz volta e tenta novamente. Junto com a função except e finally.
 #except - Junto com a função try, ele espera um tipo de erro, se esse erro acontecer ele faz o que você digitar depois dos dois pontos.
 #.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
-
 print("\n★  CALCULATOR MAXPROGAMER ★\n")
 while True:
     try:
@@ -90,29 +89,25 @@ while True:
                                 print("------ ✖ Você não escolheu uma operação válida, tente novamente ✖ ------","\n") 
                         M = input("\n-> Você deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR\n--> Se quiser continuar aperte enter...\n") #(M) Modo
                         MM = M.lower() #(MM) Mudar Modo
-                        if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode":
+                        if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode" or MM == "para":
                             break
-
                 elif BA == 2:
-                    while True:
                         try:
-                            exp_mat = input("\n➤  Digite a expressão matemática que você quer trabalhar.\n")
+                            exp_mat = input("➤  Digite a expressão matemática que você quer trabalhar.\n")
                             RDEM = eval(exp_mat) #(RDEM)Resultado da expressão matemática.
                         except SyntaxError:
-                            print("✖ Expressão matemática inválida ✖\n")
+                            print("✖ Expressão matemática inválida ✖")
                         except NameError:
-                            print("\n✖ Expressão matemática inválida ✖\n")
+                            print("\n✖ Expressão matemática inválida ✖")
                         else:
                             print("O resultado da expressão matemática é:", RDEM,"\n")
-                        
-                            M = input("-> Você deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR\n--> Se quiser continuar aperte enter...\n") #(M) Modo
-                            MM = M.lower() #(MM) Mudar Modo
-                            if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode":
-                                break 
+                        M = input("-> Você deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR\n--> Se quiser continuar aperte enter...\n") #(M) Modo
+                        MM = M.lower() #(MM) Mudar Modo
+                        if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode" or MM == "para":
+                            break
                 else:
                     print("\n","✖ Escolha um modo válido ✖","\n")
                     break
-                    
         desligar = input("\n---> Se quiser desligar a calculadora digite OFF, se não aperte enter <---\n")
         min = desligar.lower()
         if min == "desligar" or min == "off" or min == "desliga":
