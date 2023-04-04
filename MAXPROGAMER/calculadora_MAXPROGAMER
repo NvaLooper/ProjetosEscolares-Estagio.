@@ -1,8 +1,3 @@
-def desligarC():
-    desligar = input("\n---> Se quiser desligar a calculadora digite OFF, se não aperte enter <---\n")
-    min = desligar.lower()
-    if min == "desligar" or min == "off" or min == "desliga":
-        print("\n","----- (: Obrigado por usar a calculadora MAXPROGAMER :) -----","\n")
 def Expressao_mat():
     while True:
         try:
@@ -44,14 +39,18 @@ def Conta_potencia():
         if MM == "mudar" or MM == "parar" or MM == "muda":
             break
 def Conta_multiplicacao():
+     print("\n【 Você escolheu multipliacação 】")
      while True:
             try:
-                M1 = float(input("【 Você escolheu multiplicação 】\n1) Escolha o primeiro número: \n")) #(M1) Multiplicação um
-                M2 = float(input("2) Escolha o segundo número:\n")) #(M2) Multiplicação dois
-            except ValueError:
-                print("\n✖  Número inválido, tente novamente: ✖\n")
+                quantidade = int(input("Quantos números deseja multiplicar? "))
+                resultado = 1
+                for i in range(quantidade):
+                    numero = float(input("Digite o número {}º:\n".format(i+1)))
+                    resultado *= numero
+            except(NameError, TypeError, SyntaxError,ValueError):
+                print("\n✖  Você não escolheu números válidos ✖\n")
             else:
-                print("\n",M1,"x",M2,"=", M1*M2)
+                print("⇢ O resultado da multiplicação é: ", resultado)
             M = input("Se você desejar mudar o tipo de conta, digite MUDAR.\nSe quiser continuar aperte enter...\n") 
             MM = M.lower()
             if MM == "mudar" or MM == "parar" or MM == "muda":
@@ -93,10 +92,10 @@ def Conta_soma():
             print("")
             numeros = []
             for i in range(quantidade_numeros):
-                numero = float(input("Digite o {}º número: ".format(i+1)))
+                numero = float(input("Digite o {}º número:\n".format(i+1)))
                 numeros.append(numero)
         except(NameError, TypeError, SyntaxError,ValueError):
-            print("Você não escolheu números válidos")
+            print("\n✖  Você não escolheu números válidos ✖\n")
         else:   
             SDN = sum(numeros)
             print("\nA soma dos números digitados é: {}".format(SDN),"\n")
@@ -146,5 +145,8 @@ while True:
             else:
                 print("\n","✖ Escolha um modo válido ✖","\n")
                 break
-    desligarC()
-    break
+    desligar = input("\n---> Se quiser desligar a calculadora digite OFF, se não aperte enter <---\n")
+    min = desligar.lower()
+    if min == "desligar" or min == "off" or min == "desliga":
+        print("\n","----- (: Obrigado por usar a calculadora MAXPROGAMER :) -----","\n")
+        break
