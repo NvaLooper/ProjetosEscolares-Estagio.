@@ -5,6 +5,10 @@ NA = randint(0,20)
 NB = randint(0,20)
 NC = randint(0,20)
 
+X = "Tentativa 1:",NA
+Y = "Tentativa 2:",NB
+Z = "Tentativa 3:",NC
+
 # Definindo o layout da janela
 layout = [
     [sg.Text("Gostaria de começar o jogo?",size=(22,1),text_color='Black')],
@@ -21,21 +25,18 @@ janela2 = sg.Window("Jogando", layout2)
 while True:
     event, value = janela1.read()
     if event == "Sim":
-            janela1.hide()
-            event2, value2 = janela2.read()
-            if event2 == NA:
-                sg.popup("Você acertou",text_color="yellow")
-                break
-            elif event2 == NB:
-                sg.popup("Você errou",text_color="red")
-                break
-            elif event2 == NC:
-                sg.popup("Você errou",text_color="red")
-                break
-            elif event2 == sg.WIN_CLOSED:
-                sg.popup("Obrigado por usar o programa :) \n",text_color="Black")
-                break
+        janela1.hide()
+        event, value = janela2.read()
+        if event == X:
+            sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+            break
+        elif event == Y or Z:
+            sg.popup("Você errou :(",button_color="Red", text_color="Red")
+            break
+        elif event == sg.WIN_CLOSED:
+            sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
+            break
 
     elif event == 'Não' or event == sg.WIN_CLOSED: 
-        sg.popup("Obrigado por usar o programa :) \n",text_color="Black")
+        sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
         break
