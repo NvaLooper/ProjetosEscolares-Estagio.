@@ -26,7 +26,7 @@ while True:
     event, value = janela1.read()
     if event == "Sim":
         janela1.hide()
-        event, value = janela2.read()
+        event2, value = janela2.read()
         if event == X:
             sg.popup("Você acertou :)",button_color="Green", text_color="Green")
             break
