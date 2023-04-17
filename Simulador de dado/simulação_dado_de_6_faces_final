@@ -1,0 +1,25 @@
+import PySimpleGUI as sg
+from random import randint
+sg.theme('Reddit')
+
+# Definindo o layout da janela
+layout = [
+    [sg.Text("Gostaria de girar o dado?",size=(20,1),text_color='Black')],
+    [sg.Text("O número gerado foi:",text_color='Black',size=(15)),sg.Text(key="valoraleatorio",text_color='Blue')],
+    [sg.Text("")],
+    [sg.Button('Gerar número aleatório',size=(30,1))],
+    [sg.Button('Fechar programa',size=(30,1))]]
+    
+
+# Criando a janela
+janela = sg.Window("Simulador de dado", layout)
+
+# Loop de eventos
+while True:
+    evento, valores = janela.read()
+    if evento == "Gerar número aleatório":
+        janela["valoraleatorio"].update(randint(1,6))
+
+    elif evento == 'Fechar programa' or evento == sg.WIN_CLOSED:
+        sg.popup("Obrigado por usar o programa :)\n",text_color='Black')
+        break
