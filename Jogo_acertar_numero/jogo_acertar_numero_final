@@ -29,14 +29,12 @@ while True:
                     except(ValueError,NameError,SyntaxError):
                         sg.popup("Escolha número inteiros válidos")
                         break
-
     elif event == "Gerar outro número":
         while True:
             sg.popup_auto_close("Você gerou um novo número")
             janela1["tentativa_falha"].update("")
             NA = randint(0,10)
             break
-
     elif event == 'Fechar programa' or event == sg.WIN_CLOSED: 
         sg.popup("Obrigado por usar o programa",text_color="Black",button_color="Blue")
         break
