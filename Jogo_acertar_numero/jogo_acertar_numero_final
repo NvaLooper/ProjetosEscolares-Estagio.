@@ -12,6 +12,7 @@ layout = [
     [sg.Text(key="tentativa_falha")],
 ]# Criando a janela
 janela1 = sg.Window("Jogo: Acerte o número",layout)
+#Loop de eventos e valores
 while True:
     event, value = janela1.read()
     if event == "Tentar":
