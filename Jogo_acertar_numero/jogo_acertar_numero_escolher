@@ -1,14 +1,18 @@
 import PySimpleGUI as sg
 from random import randint
+import random
 sg.theme('Reddit')
 NA = randint(0,20)
 NB = randint(0,20)
 NC = randint(0,20)
-
-X = "Tentativa 1:",NA
-Y = "Tentativa 2:",NB
-Z = "Tentativa 3:",NC
-
+NA != NB
+NA !=NC
+NB != NC 
+NB != NA
+NC != NA
+NC != NB
+Ncorreto = [NA,NB,NC]
+X = random.choice(Ncorreto)
 # Definindo o layout da janela
 layout = [
     [sg.Text("Gostaria de começar o jogo?",size=(22,1),text_color='Black')],
@@ -21,22 +25,32 @@ layout2 = [
 # Criando a janela
 janela1 = sg.Window("Tente acertar o número", layout,finalize=True)
 janela2 = sg.Window("Jogando", layout2)
-
 while True:
     event, value = janela1.read()
     if event == "Sim":
         janela1.hide()
-        event2, value = janela2.read()
-        if event == X:
-            sg.popup("Você acertou :)",button_color="Green", text_color="Green")
-            break
-        elif event == Y or Z:
-            sg.popup("Você errou :(",button_color="Red", text_color="Red")
-            break
-        elif event == sg.WIN_CLOSED:
-            sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
-            break
-
+        event, value = janela2.read()
+        if event == NA:
+            if NA == X:
+                sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+                break
+            else: 
+                sg.popup("Você errou :(",button_color="Red", text_color="Red")
+                break
+        if event == NB:
+            if NB == X:
+                sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+                break
+            else: 
+                sg.popup("Você errou :(",button_color="Red", text_color="Red")
+                break
+        if event == NC:
+            if NC == X:
+                sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+                break
+            else: 
+                sg.popup("Você errou :(",button_color="Red", text_color="Red")
+                break    
     elif event == 'Não' or event == sg.WIN_CLOSED: 
         sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
         break
