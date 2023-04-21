@@ -26,6 +26,7 @@ while True:
     window, event, value = sg.read_all_windows()
     if window == janela1 and event == "Sim":
         janela1.close()
+        janela1 = None
         NA = randint(0,20)
         NB = randint(0,20)
         NC = randint(0,20)
@@ -44,6 +45,7 @@ while True:
         if NA == X:
             sg.popup("Você acertou :)",button_color="Green", text_color="Green")
             janela2.close()
+            janela2 = None
             janela3 = janela_3()
         else: 
             sg.popup("Você errou :(",button_color="Red", text_color="Red")
@@ -51,6 +53,7 @@ while True:
         if NB == X:
             sg.popup("Você acertou :)",button_color="Green", text_color="Green")
             janela2.close()
+            janela2 = None
             janela3 = janela_3()
         else: 
             sg.popup("Você errou :(",button_color="Red", text_color="Red")
@@ -58,6 +61,7 @@ while True:
         if NC == X:
             sg.popup("Você acertou :)",button_color="Green", text_color="Green")
             janela2.close()
+            janela2 = None
             janela3 = janela_3()
         else: 
             sg.popup("Você errou :(",button_color="Red", text_color="Red")
@@ -73,20 +77,16 @@ while True:
                     NC = randint(0,20)
                 elif NC == NB:
                     NC= randint(0,20)
+                Ncorreto = [NA,NB,NC]
+                X = random.choice(Ncorreto)
                 janela3.close()
-                janela_2()
-    if window == janela3 and event == "Não" or sg.WIN_CLOSED:
-            sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
+                janela3 = None
+                janela2 = janela_2()
     if window == janela3 and event == "Voltar ao menu principal":
         janela3.close()
-        janela_1()
+        janela3 = None
+        janela1 = janela_1()
 #Fechar programa:
-    elif window == janela1 and event == 'Não' or event == sg.WIN_CLOSED: 
+    elif window == janela1 or janela3 and event == 'Não' or event == sg.WIN_CLOSED: 
         sg.popup_auto_close("Obrigado por usar o programa <3 \n",text_color="Black",button_color="Blue")
-        window.close()
-        if window == janela2:      
-            janela2 = None
-        elif window == janela3:
-            janela3 = None
-        elif window == janela1: 
-            break
+        break
