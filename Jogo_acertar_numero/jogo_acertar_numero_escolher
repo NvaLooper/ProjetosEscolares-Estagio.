@@ -3,63 +3,90 @@ import PySimpleGUI as sg
 from random import randint
 import random
 sg.theme('Reddit')
-#Organização dos números aleatórios:
-NA = ""
-NB = ""
-NC = ""
-NA != NB and NC
-NB != NC and NA
-NC != NA and NB
-NA = randint(0,20)
-NB = randint(0,20)
-NC = randint(0,20)
-
-Ncorreto = [NA,NB,NC]
-X = random.choice(Ncorreto)
-# Definicão do layout da janela:
-layout = [
-    [sg.Text("Gostaria de começar o jogo?",size=(22,1),text_color='Black')],
-    [sg.Button('Sim',size=(8,1),button_color="green"),sg.Button('Não',size=(8,1),button_color="red")],
-]
-layout2 = [
-    [sg.Text("Tente sua sorte com os seguintes números:",size=(40,0))],
-    [sg.Text("Opção 1:",size=(7,0),text_color="Red"),sg.Text(NA)],
-    [sg.Text("Opção 2:",size=(7,0),text_color="Red"),sg.Text(NB)],
-    [sg.Text("Opção 3:",size=(7,0),text_color="Red"),sg.Text(NC)],
-    [sg.Button("Opção 1",size=(10,1),button_color="Blue"), sg.Button("Opção 2",size=(10,1),button_color="Blue"),sg.Button("Opção 3",size=(10,1),button_color="Blue")]
-]
-# Criando a janela
-janela1 = sg.Window("Tente acertar o número", layout,finalize=True)
-janela2 = sg.Window("Jogando", layout2)
-print(X)
+# Definicão do layout das janelas:
+def janela_1():
+    layout =[[sg.Text("Gostaria de começar o jogo?",size=(22,1),text_color='Black')],
+            [sg.Button('Sim',size=(8,1),button_color="green"),sg.Button('Não',size=(8,1),button_color="red")]]
+    return sg.Window("Tente acertar o número", layout,finalize=True)
+def janela_2():
+    layout2 =[[sg.Text("Tente sua sorte com os seguintes números:",size=(40,0))],
+            [sg.Text("Opção 1:",size=(7,0),text_color="Red"),sg.Text(NA)],
+            [sg.Text("Opção 2:",size=(7,0),text_color="Red"),sg.Text(NB)],
+            [sg.Text("Opção 3:",size=(7,0),text_color="Red"),sg.Text(NC)],
+            [sg.Button("Opção 1",size=(10,1),button_color="Blue"), sg.Button("Opção 2",size=(10,1),button_color="Blue"),sg.Button("Opção 3",size=(10,1),button_color="Blue")]]
+    return sg.Window("Jogando", layout2,finalize=True)
+def janela_3():
+    layout3 = [[sg.Text("Gostaria de jogar novamente?",size = (22,3))],
+    [sg.Button("Sim",button_color = "Green",size=(10,0)), sg.Button("Não",button_color = "Red",size=(10,0))],
+    [sg.Button("Voltar ao menu principal",button_color = "Blue",size=(22,0))]]
+    return sg.Window("Jogar novamente?",layout3,finalize=True)
+janela1, janela2, janela3 = janela_1(), None, None
+#Loop de eventos:
 while True:
     window, event, value = sg.read_all_windows()
     if window == janela1 and event == "Sim":
-        janela1.hide()
-        while True:
-            event, value = janela2.read()
-            if event == "Opção 1":
-                    if NA == X:
-                        sg.popup("Você acertou :)",button_color="Green", text_color="Green")
-                        janela1.un_hide()
-                        break
-                    else: 
-                        sg.popup("Você errou :(",button_color="Red", text_color="Red")
-            if event == "Opção 2":
-                if NB == X:
-                    sg.popup("Você acertou :)",button_color="Green", text_color="Green")
-                    janela1.un_hide()
-                    janela2.hide()
-                else: 
-                    sg.popup("Você errou :(",button_color="Red", text_color="Red")
-
-            if event == "Opção 3":
-                if NC == X:
-                    sg.popup("Você acertou :)",button_color="Green", text_color="Green")
-                    janela1.un_hide()
-                    janela2.hide()
-                else: 
-                    sg.popup("Você errou :(",button_color="Red", text_color="Red")
-    elif event == 'Não' or event == sg.WIN_CLOSED: 
-        sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
-        break
+        janela1.close()
+        NA = randint(0,20)
+        NB = randint(0,20)
+        NC = randint(0,20)
+        if NB == NA:
+            NB = randint(0,20)
+        elif NB == NC:
+            NB = randint(0,20)
+        if NC == NA:
+            NC = randint(0,20)
+        elif NC == NB:
+            NC= randint(0,20)
+        Ncorreto = [NA,NB,NC]
+        X = random.choice(Ncorreto)
+        janela2 = janela_2()
+    if window == janela2 and event == "Opção 1":
+        if NA == X:
+            sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+            janela2.close()
+            janela3 = janela_3()
+        else: 
+            sg.popup("Você errou :(",button_color="Red", text_color="Red")
+    if window == janela2 and event == "Opção 2":
+        if NB == X:
+            sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+            janela2.close()
+            janela3 = janela_3()
+        else: 
+            sg.popup("Você errou :(",button_color="Red", text_color="Red")
+    if window == janela2 and event == "Opção 3":
+        if NC == X:
+            sg.popup("Você acertou :)",button_color="Green", text_color="Green")
+            janela2.close()
+            janela3 = janela_3()
+        else: 
+            sg.popup("Você errou :(",button_color="Red", text_color="Red")
+    if window == janela3 and event == "Sim":
+                NA = randint(0,20)
+                NB = randint(0,20)
+                NC = randint(0,20)
+                if NB == NA:
+                    NB = randint(0,20)
+                elif NB == NC:
+                    NB = randint(0,20)
+                if NC == NA:
+                    NC = randint(0,20)
+                elif NC == NB:
+                    NC= randint(0,20)
+                janela3.close()
+                janela_2()
+    if window == janela3 and event == "Não" or sg.WIN_CLOSED:
+            sg.popup("Obrigado por usar o programa <3 \n",text_color="Black")
+    if window == janela3 and event == "Voltar ao menu principal":
+        janela3.close()
+        janela_1()
+#Fechar programa:
+    elif window == janela1 and event == 'Não' or event == sg.WIN_CLOSED: 
+        sg.popup_auto_close("Obrigado por usar o programa <3 \n",text_color="Black",button_color="Blue")
+        window.close()
+        if window == janela2:      
+            janela2 = None
+        elif window == janela3:
+            janela3 = None
+        elif window == janela1: 
+            break
