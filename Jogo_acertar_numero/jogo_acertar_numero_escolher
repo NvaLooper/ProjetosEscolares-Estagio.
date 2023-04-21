@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 from random import randint
 import random
 sg.theme('Reddit')
-# Definicão do layout das janelas:
+# Definicão das funções do layout das janelas:
 def janela_1():
     layout =[[sg.Text("Gostaria de começar o jogo?",size=(22,1),text_color='Black')],
             [sg.Button('Sim',size=(8,1),button_color="green"),sg.Button('Não',size=(8,1),button_color="red")]]
@@ -49,6 +49,9 @@ while True:
             janela3 = janela_3()
         else: 
             sg.popup("Você errou :(",button_color="Red", text_color="Red")
+            janela2.close()
+            janela2 = None
+            janela3 = janela_3()
     if window == janela2 and event == "Opção 2":
         if NB == X:
             sg.popup("Você acertou :)",button_color="Green", text_color="Green")
@@ -57,6 +60,9 @@ while True:
             janela3 = janela_3()
         else: 
             sg.popup("Você errou :(",button_color="Red", text_color="Red")
+            janela2.close()
+            janela2 = None
+            janela3 = janela_3()
     if window == janela2 and event == "Opção 3":
         if NC == X:
             sg.popup("Você acertou :)",button_color="Green", text_color="Green")
@@ -65,6 +71,9 @@ while True:
             janela3 = janela_3()
         else: 
             sg.popup("Você errou :(",button_color="Red", text_color="Red")
+            janela2.close()
+            janela2 = None
+            janela3 = janela_3()
     if window == janela3 and event == "Sim":
                 NA = randint(0,20)
                 NB = randint(0,20)
