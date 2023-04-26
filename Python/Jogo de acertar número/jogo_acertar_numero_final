@@ -1,0 +1,41 @@
+import PySimpleGUI as sg
+from random import randint
+sg.theme('Reddit')
+NA = randint(0,10)
+# Definindo o layout da janela
+layout = [
+    [sg.Text("O número vai de 0 a 10", size=(18,1),text_color='Blue')],
+    [sg.Text("Tente acertar o número:\n",size=(18,1),text_color='Black'),sg.Input(size=(4,0))],
+    [sg.Text("")],
+    [sg.Button('Tentar',size=(10,1),button_color="green"),sg.Button('Gerar outro número',size=(15,1))],
+    [sg.Button('Fechar programa',size=(27,1),button_color="red")],
+    [sg.Text(key="tentativa_falha")],
+]# Criando a janela
+janela1 = sg.Window("Jogo: Acerte o número",layout)
+#Loop de eventos e valores
+while True:
+    event, value = janela1.read()
+    if event == "Tentar":
+                while True:
+                    try:
+                        if int(value[0])==NA: 
+                            sg.popup("Você acertou !!!\n",text_color="Green",button_color="Green")
+                            break
+                        if int(value[0])<NA:
+                            janela1["tentativa_falha"].update("-- Você deve tentar um número maior --",text_color="Red")
+                            break
+                        if int(value[0])>NA:
+                            janela1["tentativa_falha"].update("-- Você deve tentar um número menor --",text_color="Red")
+                            break
+                    except(ValueError,NameError,SyntaxError,KeyError):
+                        sg.popup("Escolha número inteiros válidos")
+                        break
+    elif event == "Gerar outro número":
+        while True:
+            sg.popup_auto_close("Você gerou um novo número :)")
+            janela1["tentativa_falha"].update("")
+            NA = randint(0,10)
+            break
+    elif event == 'Fechar programa' or event == sg.WIN_CLOSED: 
+        sg.popup("Obrigado por usar o programa",text_color="Black",button_color="Blue")
+        break
