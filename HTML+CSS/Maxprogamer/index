@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <head>      
+        <title> CALCULADORA MAXPROGAMER </title>
+    </head>
+    <link rel="stylesheet" href="MaxprogamerCSS.css">
+    <body>
+        <h1 class="QuebradeLinhaM" id="Titulo"> Calculadora MAXPROGAMER</h1> 
+        <div>
+            <img src="maxgamer.jpg" id="ImgGamer"/> 
+        </div>
+        <p class="LetraLL"> Seja bem vindo ao site da calculadora <b> MAXPROGAMER </b>.</p>
+    </body>
+    <body style="background-color: rgb(231, 229, 229);">
+        <ul>
+            <li class="LetraM QuebradeLinhaP"> Essa calculadora é rápida</li> 
+            <li class="LetraM QuebradeLinhaP"> A mais procurada do mundo todo</li> 
+        </ul>
+        <ol>
+            <li class="LetraM QuebradeLinhaP"> O criador foi o Vitor</li>
+            <li class="LetraM QuebradeLinhaP"> 100% confiável</li> 
+        </ol>
+        <form> 
+            <p class="TFormulario QuebradeLinhaM"> Escreva aqui seu nome: <input type = "text"style="background-color:  black; color: bisque;"\> </p> 
+            <p class="TFormulario QuebradeLinhaM"> Escreva aqui sua idade: <input type = "number"style="background-color:  black; color: bisque;"\> </p>  
+            <p class="TFormulario QuebradeLinhaM"> Escreva a senha do seu email: <input type = "password" style="background-color: black; color: bisque;"\> </p> 
+            <button>
+                Eviar as informações
+            </button>
+        </form>
+    </body>
+</html>
