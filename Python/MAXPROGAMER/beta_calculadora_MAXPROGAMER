@@ -1,0 +1,113 @@
+#Intruções das funções utilizadas:
+#while - Como no inglês representa enquanto, serve para criar um loop. Se você quiser parar o loop precisa quebra-lo com a variável Break
+#"\n"- Serve para pular uma linha e pode ser usado repetidamente.
+#pow - Serve para colocar um número em expoente, o primeiro número é a base e o segundo é o expoente.
+#try - Ele tenta fazer o que foi pedido, se não conseguir ele faz volta e tenta novamente. Junto com a função except e finally.
+#except - Junto com a função try, ele espera um tipo de erro, se esse erro acontecer ele faz o que você digitar depois dos dois pontos.
+#.lower - Serve para deixar todas as palavras que estão na variável ficarem como letra minúscula. (.upper faz o oposto.)
+print("\n★  CALCULATOR MAXPROGAMER ★\n")
+while True:
+    try:
+        print("#Lembretes:\n'+' - para soma\n'-' - para subtração\n'*' - para multiplicação\n'/' - para divisão\n#OBS: Nos números não inteiros é utilizado ponto(.) invés da vírgula(,)\n")
+        BA = float(input("---> Bem vindo ao menu principal <---\n1 - Básica.\n2 - Expressão Matemática.\n")) #(BA)Básico;Avançado
+    except ValueError:
+        print("\n✖  Você não escolheu um modo, tente novamente ✖\n")
+    else:
+        while True:
+            if BA == 1:
+                print("\n➤  Escolha o tipo de conta:\n\n ┋1 - Divisão       (÷) ┋\n ┋2 - Multiplicação (x) ┋\n ┋3 - Subtração     (-) ┋\n ┋4 - Soma          (+) ┋\n ┋5 - Potenciação   (^) ┋\n ┋6 - Radiciação    (√) ┋  \n\n")   
+                try:
+                    TDC = float(input("➤  A operação que deseja trabalhar é: ")) #(TDC)Tipo de Conta
+                    print("")
+                except ValueError: 
+                    print("\n","------ ✖ Você não escolheu uma operação válida, tente novamente ✖ ------","\n")
+                else:
+                    if TDC == 1:
+                        while True:
+                            try:
+                                D1 = float(input("【 Você escolheu divisão 】\n1) Escolha o numerador: \n")) #(D1) Divisão um
+                                D2 = float(input("2) Escolha o denominador:\n")) #(D2) Divisão dois 
+                                print("\n",D1,"/",D2,"=", D1/D2)   
+                            except ValueError:
+                                print("✖  Número inválido, tente novamente: ✖\n")
+                            except ZeroDivisionError:
+                                print("\n✖  Escreva um segundo número novamente, pelas regras matemáticas 0 não pode ser\no denominador de nenhuma conta de divisão. ✖\n")
+                            else:
+                                break
+                    elif TDC == 2:
+                        while True:
+                            try:
+                                M1 = float(input("【 Você escolheu multiplicação 】\n1) Escolha o primeiro número: \n")) #(M1) Multiplicação um
+                                M2 = float(input("2) Escolha o segundo número:\n")) #(M2) Multiplicação dois
+                            except ValueError:
+                                print("\n✖  Número inválido, tente novamente: ✖\n")
+                            else:
+                                print("\n",M1,"x",M2,"=", M1*M2)
+                                break 
+                    elif TDC == 3:
+                        while True:
+                            try:
+                                SB1 = float(input("【 Você escolheu subtração 】\n1)Escolha o primeiro número: \n")) #(SB1) Subração um
+                                SB2 = float(input("2) Escolha o segundo número:\n")) #(SB2) Subtração dois
+                            except ValueError:
+                                print("\n✖  Número inválido, tente novamente: ✖\n")
+                            else:
+                                print("\n",SB1,"-",SB2,"=", SB1-SB2)
+                                break 
+                    elif TDC == 4:
+                        while True:
+                            try:
+                                S1 = float(input("【 Você escolheu soma 】\n1) Escolha o primeiro número: \n")) #(S1) Soma um
+                                S2 = float(input("2) Escolha o segundo número:\n")) #(S2) Soma dois
+                            except:
+                                print("\n✖  Número inválido, tente novamente: ✖\n")
+                            else:
+                                print("\n",S1,"+",S2,"=", S1+S2)
+                                break
+                    elif TDC == 5:
+                        while True:
+                            try:
+                                P = float(input("【 Você escolheu potencialização 】\n1) Escolha o número: \n")) #(P) Potencialização
+                                Ex = float(input("2) Escolha o expoente para o número:\n")) #(Ex) Expoente
+                            except:
+                                print("\n✖  Número inválido, tente novamente: ✖\n")
+                            else:
+                                print("\n",P,"^",Ex,"=", pow(P,Ex)) 
+                                break
+                    elif TDC == 6:
+                        while True:
+                            try:
+                                R = float(input("【 Você escolheu radiciação 】\n1) Escolha o número da parte de dentro da raiz: \n")) #(R) Raiz
+                                Ind = float(input("2) Escolha o índice da raiz:\n")) #(Ind) Índice da raiz
+                            except:
+                                print("\n✖  Número inválido, tente novamente: ✖\n")
+                            else:
+                                print("O primeiro número refere ao índice da raiz e o segundo é o valor que será racionalizado")
+                                print("\n",Ind,"√",R,"=", pow(R, 1/Ind))
+                                break
+                    else:
+                        print("------ ✖ Você não escolheu uma operação válida, tente novamente ✖ ------","\n") 
+                M = input("\n-> Você deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR\n--> Se quiser continuar aperte enter...\n") #(M) Modo
+                MM = M.lower() #(MM) Mudar Modo
+                if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode" or MM == "para":
+                    break
+            elif BA == 2:
+                    try:
+                        exp_mat = input("➤  Digite a expressão matemática que você quer trabalhar.\n")
+                        RDEM = eval(exp_mat) #(RDEM)Resultado da expressão matemática.
+                    except (SyntaxError,NameError):
+                        print("✖ Expressão matemática inválida ✖\n")
+                    else:
+                        print("O resultado da expressão matemática é:", RDEM,"\n")
+                    M = input("-> Você deseja mudar de modo ou parar a calculadora? Digite MODO ou PARAR\n--> Se quiser continuar aperte enter...\n") #(M) Modo
+                    MM = M.lower() #(MM) Mudar Modo
+                    if MM == "modo" or MM == "parar" or MM == "stop" or MM == "mode" or MM == "para":
+                        break
+            else:
+                print("\n","✖ Escolha um modo válido ✖","\n")
+                break
+    desligar = input("\n---> Se quiser desligar a calculadora digite OFF, se não aperte enter <---\n")
+    min = desligar.lower()
+    if min == "desligar" or min == "off" or min == "desliga":
+        print("\n","----- (: Obrigado por usar a calculadora MAXPROGAMER :) -----","\n")
+        break
