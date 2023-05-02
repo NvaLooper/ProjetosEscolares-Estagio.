@@ -1,10 +1,21 @@
+#Configuração do programa:
 import time
 import sys
-minutos = 0
-intervalo = 1
-def conometro():
-    global temp_minutos, segundos
+#Definição das funções:
+def calculo_temp():
+    #Conversão de segundos para minutos
+    global temp_minutos
     temp_minutos = minutos*60
+def cronometro():
+    #Função responsável pelo cronometro
+    for x in range(temp_minutos,0,-1):
+        segundos = x % 60
+        minutoss = int (x/60) % 60
+        horas = int(x / 3600)
+        print(f"{horas:02}:{minutoss:02}:{segundos:02}")
+        time.sleep(1)
+#Incício do programa:
+minutos = 0
 while True:
     print("\n1 - Começar contador\n2 - Opções\n3 - Finalizar programa")
     try:
@@ -24,55 +35,42 @@ while True:
                 else:
                     if Escolha_tempo == 1:
                         minutos = 5
-                        conometro()
+                        calculo_temp()
                         break
                     elif Escolha_tempo == 2:
                         minutos = 10
-                        conometro()
+                        calculo_temp()
                         break
                     elif Escolha_tempo == 3:
                         minutos = 15
-                        conometro()
+                        calculo_temp()
                         break
                     elif Escolha_tempo == 4:
                         minutos = int(input("Minutos:"))
-                        conometro()
+                        calculo_temp()
                         break
                     elif Escolha_tempo == 5:
-                        break
-                    elif Escolha_tempo == 6:
-                        temp_minutos = 0.0166
+                        minutos = 3
+                        temp_minutos = minutos
                         break
                     else:
                         print("\n❌ A opção escolhida é inválida ❌\nTente novamente...")
         if menu == 1:
-            for x in range(temp_minutos,0,-1):
-                segundos = x % 60
-                minutos = int (x/60) % 60
-                horas = int(x / 3600)
-                print(f"{horas:02}:{minutos:02}:{segundos:02}")
-                time.sleep(1)
-            if tempo <=0:
+            if minutos <=0:
                 print("\nNúmero inválido, você deve selecionar um número nas opções antes de começar o contador")
-            elif tempo>0:
+            elif minutos>0:
+                cronometro()
                 while True:
-                    print(tempo)
-                    tempo-=intervalo
-                    time.sleep(intervalo)
-                    if tempo == 0 or tempo <=0:
-                        print("\n!!! 💧 HORA DE BEBER ÁGUA 💧 !!!")
-                        beber = input("\nVocê bebeu água?\n")
-                        bebermin = beber.lower()
-                        if bebermin == "sim" or bebermin == "s":
-                            novamente = int(input("\nGostaria de começar o contador novamente?\n1 - Sim\n2 - Não\nEscolha uma das opções: "))
-                            if novamente == 1:
-                                tempo = minutos*60
-                                print(tempo)
-                                tempo-=intervalo
-                                time.sleep(intervalo)
-                            elif novamente == 2:
-                                break
-                            else:
-                                print("\nEscolha números válidos\n")
+                    print("\n!!! 💧 HORA DE BEBER ÁGUA 💧 !!!")
+                    beber = input("Você bebeu água?\n")
+                    bebermin = beber.lower()
+                    if bebermin == "sim" or bebermin == "s":
+                        novamente = int(input("\nGostaria de começar o contador novamente?\n1 - Sim\n2 - Não\nEscolha uma das opções: "))
+                        if novamente == 1:
+                            cronometro()
+                        elif novamente == 2:
+                            break
                         else:
-                            print("Responda com SIM se bebeu água.")
+                            print("\n❌ Escolha números válidos ❌\n")
+                    else:
+                        print("---> !!! Então beba água !!! <---\nResponda com SIM(S) se você já bebeu água...\n")
