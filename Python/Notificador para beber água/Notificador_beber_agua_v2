@@ -1,0 +1,66 @@
+from time import sleep
+import sys
+minutos = 0
+intervalo = 1
+while True:
+    print("\n1 - Começar contador\n2 - Opções\n3 - Finalizar programa")
+    try:
+        menu = int(input("\nO que você deseja fazer: "))
+    except(ValueError,NameError,SyntaxError):
+        print("\n❌ Opção inválida ❌\nEscolha uma opção válida:")
+    else:
+        if menu == 3:
+            sys.exit("\nObrigado por usar o programa <3\n")
+        if menu == 2:
+            while True:
+                print("\n⋮ 1 - 5 minutos ⋮ 2 - 10 minutos ⋮ 3 - 15 minutos ⋮\n\n4 - Definir manualmente um tempo\n5 - Voltar ao menu\n")
+                try:
+                    Escolha_tempo = int(input("Escolha uma das opções: "))
+                except(ValueError,NameError,SyntaxError):
+                    print("\n❌ A opção escolhida é inválida ❌\nTente novamente...")
+                else:
+                    if Escolha_tempo == 1:
+                        minutos = 5
+                        break
+                    elif Escolha_tempo == 2:
+                        minutos = 10
+                        break
+                    elif Escolha_tempo == 3:
+                        minutos = 15
+                        break
+                    elif Escolha_tempo == 4:
+                        minutos = float(input("Minutos:"))
+                        break
+                    elif Escolha_tempo == 5:
+                        break
+                    elif Escolha_tempo == 6:
+                        minutos = 0.0166
+                        break
+                    else:
+                        print("\n❌ A opção escolhida é inválida ❌\nTente novamente...")
+        if menu == 1:
+            tempo = minutos*60
+            if tempo <=0:
+                print("\nNúmero inválido, você deve selecionar um número nas opções antes de começar o contador")
+            elif tempo>0:
+                while True:
+                    print(tempo)
+                    tempo-=intervalo
+                    sleep(intervalo)
+                    if tempo == 0 or tempo <=0:
+                        print("\n!!! 💧 HORA DE BEBER ÁGUA 💧 !!!")
+                        beber = input("\nVocê bebeu água?\n")
+                        bebermin = beber.lower()
+                        if bebermin == "sim" or bebermin == "s":
+                            novamente = int(input("\nGostaria de começar o contador novamente?\n1 - Sim\n2 - Não\nEscolha uma das opções: "))
+                            if novamente == 1:
+                                tempo = minutos*60
+                                print(tempo)
+                                tempo-=intervalo
+                                sleep(intervalo)
+                            elif novamente == 2:
+                                break
+                            else:
+                                print("\nEscolha números válidos\n")
+                        else:
+                            print("Responda com SIM se bebeu água.")
