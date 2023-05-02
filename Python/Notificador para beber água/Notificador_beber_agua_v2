@@ -14,6 +14,22 @@ def cronometro():
         horas = int(x / 3600)
         print(f"{horas:02}:{minutoss:02}:{segundos:02}")
         time.sleep(1)
+def beber():
+    #Função responsável pela repetição do cronometro
+    while True:
+        print("\n!!! 💧 HORA DE BEBER ÁGUA 💧 !!!")
+        beber = input("Você bebeu água?\n")
+        bebermin = beber.lower()
+        if bebermin == "sim" or bebermin == "s":
+            novamente = int(input("\nGostaria de começar o contador novamente?\n1 - Sim\n2 - Não\nEscolha uma das opções: "))
+            if novamente == 1:
+                cronometro()
+            elif novamente == 2:
+                break
+            else:
+                print("\n❌ Escolha números válidos ❌\n")
+        else:
+            print("---> !!! Então beba água !!! <---\nResponda com SIM(S) se você já bebeu água...\n")
 #Incício do programa:
 minutos = 0
 while True:
@@ -46,7 +62,7 @@ while True:
                         calculo_temp()
                         break
                     elif Escolha_tempo == 4:
-                        minutos = int(input("Minutos:"))
+                        minutos = int(input("Quantidade de minutos:"))
                         calculo_temp()
                         break
                     elif Escolha_tempo == 5:
@@ -62,17 +78,4 @@ while True:
                 print("\nNúmero inválido, você deve selecionar um número nas opções antes de começar o contador")
             elif minutos>0:
                 cronometro()
-                while True:
-                    print("\n!!! 💧 HORA DE BEBER ÁGUA 💧 !!!")
-                    beber = input("Você bebeu água?\n")
-                    bebermin = beber.lower()
-                    if bebermin == "sim" or bebermin == "s":
-                        novamente = int(input("\nGostaria de começar o contador novamente?\n1 - Sim\n2 - Não\nEscolha uma das opções: "))
-                        if novamente == 1:
-                            cronometro()
-                        elif novamente == 2:
-                            break
-                        else:
-                            print("\n❌ Escolha números válidos ❌\n")
-                    else:
-                        print("---> !!! Então beba água !!! <---\nResponda com SIM(S) se você já bebeu água...\n")
+                beber()
