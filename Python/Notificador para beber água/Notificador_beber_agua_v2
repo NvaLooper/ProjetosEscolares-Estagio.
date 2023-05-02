@@ -1,7 +1,10 @@
-from time import sleep
+import time
 import sys
 minutos = 0
 intervalo = 1
+def conometro():
+    global temp_minutos, segundos
+    temp_minutos = minutos*60
 while True:
     print("\n1 - Começar contador\n2 - Opções\n3 - Finalizar programa")
     try:
@@ -21,32 +24,41 @@ while True:
                 else:
                     if Escolha_tempo == 1:
                         minutos = 5
+                        conometro()
                         break
                     elif Escolha_tempo == 2:
                         minutos = 10
+                        conometro()
                         break
                     elif Escolha_tempo == 3:
                         minutos = 15
+                        conometro()
                         break
                     elif Escolha_tempo == 4:
-                        minutos = float(input("Minutos:"))
+                        minutos = int(input("Minutos:"))
+                        conometro()
                         break
                     elif Escolha_tempo == 5:
                         break
                     elif Escolha_tempo == 6:
-                        minutos = 0.0166
+                        temp_minutos = 0.0166
                         break
                     else:
                         print("\n❌ A opção escolhida é inválida ❌\nTente novamente...")
         if menu == 1:
-            tempo = minutos*60
+            for x in range(temp_minutos,0,-1):
+                segundos = x % 60
+                minutos = int (x/60) % 60
+                horas = int(x / 3600)
+                print(f"{horas:02}:{minutos:02}:{segundos:02}")
+                time.sleep(1)
             if tempo <=0:
                 print("\nNúmero inválido, você deve selecionar um número nas opções antes de começar o contador")
             elif tempo>0:
                 while True:
                     print(tempo)
                     tempo-=intervalo
-                    sleep(intervalo)
+                    time.sleep(intervalo)
                     if tempo == 0 or tempo <=0:
                         print("\n!!! 💧 HORA DE BEBER ÁGUA 💧 !!!")
                         beber = input("\nVocê bebeu água?\n")
@@ -57,7 +69,7 @@ while True:
                                 tempo = minutos*60
                                 print(tempo)
                                 tempo-=intervalo
-                                sleep(intervalo)
+                                time.sleep(intervalo)
                             elif novamente == 2:
                                 break
                             else:
