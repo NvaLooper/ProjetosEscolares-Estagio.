@@ -50,6 +50,8 @@ while True:
                         calculo_temp()
                         break
                     elif Escolha_tempo == 5:
+                        break
+                    elif Escolha_tempo == 11:
                         minutos = 3
                         temp_minutos = minutos
                         break
