@@ -1,0 +1,71 @@
+#https://site112.com/tabela-cores-html -> Cores
+#https://www.youtube.com/playlist?list=PLqx8fDb-FZDFznZcXb_u_NyiQ7Nai674- -> Tutorial (4/50)
+#Configuração:
+from tkinter import *
+from playsound import playsound
+from time import *
+janela = Tk()
+class aplicativo():
+    #Função responsável por iniciar a janela
+    def __init__(self):
+        self.janela = janela
+        self.config_tela()
+        self.tela()
+        self.coisas_quadrado1()
+        janela.mainloop()
+    #Função responsável pela configuração da janela
+    def config_tela(self):
+        self.janela.title("Cadastro do usuário")
+        self.janela.geometry("700x520")
+        self.janela.configure(background="#4682B4")
+        self.janela.resizable(True, True)
+        self.janela.maxsize(width=900, height=700)
+        self.janela.minsize(width=500, height=400)
+    #Função responsável pelos retangulos que são exibidos na tela
+    def tela(self):
+        self.quadrado_princ = Frame(
+            self.janela, bd=4, bg="#D3D3D3",
+            highlightbackground="Black",highlightthickness=3)
+        self.quadrado_princ.place(relx=0.16, rely=0.03,relwidth=0.7, relheight=0.46)
+        self.quadrado_sec = Frame(
+            self.janela, bd=4, bg="#D3D3D3",
+            highlightbackground="Black",highlightthickness=3)
+        self.quadrado_sec.place(relx=0.16, rely=0.51,relwidth=0.7, relheight=0.46)
+    #Função responsável pela criação dos botões na janela
+    def coisas_quadrado1(self):
+    #Botão buscar:    
+        self.botao_buscar = Button(self.quadrado_princ, text="Buscar")
+        self.botao_buscar.place(relx=0.22, rely=0.085, relheight=0.16, relwidth=0.12)
+    #Botão novo:    
+        self.botao_novo = Button(self.quadrado_princ, text="Novo")
+        self.botao_novo.place(relx=0.45, rely=0.085, relheight=0.16, relwidth=0.12)
+    #Botão alterar:    
+        self.botao_alterar = Button(self.quadrado_princ, text="Alterar")
+        self.botao_alterar.place(relx=0.6, rely=0.085, relheight=0.16, relwidth=0.12)
+    #Botão apagar:    
+        self.botao_apagar = Button(self.quadrado_princ, text="Apagar")
+        self.botao_apagar.place(relx=0.75, rely=0.085, relheight=0.16, relwidth=0.12)
+    #Botão limpar:
+        self.botao_limpar = Button(self.quadrado_princ, text="Limpar")
+        self.botao_limpar.place(relx=0.75, rely=0.77, relheight=0.16, relwidth=0.12)
+    #Criação da caixa de texto e o input(Código)
+        self.codigo = Label(self.quadrado_princ, text="Código", bg="#D3D3D3")
+        self.codigo.place(relx=0.05, rely=0.05)
+        self.input_codigo = Entry(self.quadrado_princ)
+        self.input_codigo.place(relx=0.05, rely=0.16, relwidth=0.1)
+    #Criação da caixa de texto e o input(Telefone)
+        self.telefone = Label(self.quadrado_princ, text="Telefone", bg="#D3D3D3")
+        self.telefone.place(relx=0.05, rely=0.27)
+        self.input_telefone = Entry(self.quadrado_princ)
+        self.input_telefone.place(relx=0.05, rely=0.38, relwidth=0.22)
+    #Criação da caixa de texto e o input(Nome)
+        self.nome = Label(self.quadrado_princ, text="Nome", bg="#D3D3D3")
+        self.nome.place(relx=0.05, rely=0.49) 
+        self.input_nome = Entry(self.quadrado_princ)
+        self.input_nome.place(relx=0.05, rely=0.60, relwidth=0.45)
+    #Criação da caixa de texto e o input(Cidade)
+        self.cidade = Label(self.quadrado_princ, text="Cidade", bg="#D3D3D3")
+        self.cidade.place(relx=0.05, rely=0.71)
+        self.input_cidade = Entry(self.quadrado_princ)
+        self.input_cidade.place(relx=0.05, rely=0.82, relwidth=0.5)
+aplicativo()
