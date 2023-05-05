@@ -3,6 +3,7 @@
 #Configuração:
 from tkinter import *
 from tkinter import ttk
+import sqlite3
 janela = Tk()
 #BackEND
 class Funcs():
@@ -12,6 +13,25 @@ class Funcs():
         self.input_telefone.delete(0, END)
         self.input_cidade.delete(0, END)
         self.input_nome.delete(0, END)
+    def conecta_bd(self):
+        self.conn = sqlite3.connect("Clientes.bd")
+        self.cursor = self.conn.cursor(); print("\n------ ⌛ Conectando ao banco de dados ⌛ ------\n")
+    def desconecta_bd(self):
+        self.conn.close()
+        print("\n------ 🔌 Banco de dados desconectado 🔌 ----S--\n")
+    def montaTabelas(self):
+        self.conecta_bd() 
+        #Criação da tabela
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS clientes (
+                cod INTEGER PRIMARY KEY,
+                nome_cliente CHAR(40) NOT NULL,
+                telefone INTEGER(20),
+                cidade CHAR(40)
+            );
+        """)
+        self.conn.commit(); print("------ ✔️ Banco de dados criado ✔️  ------\n")
+        self.desconecta_bd
 #FrontEND
 class aplicativo(Funcs):
     #Função responsável por iniciar a janela
@@ -21,6 +41,7 @@ class aplicativo(Funcs):
         self.tela()
         self.coisas_Retangulo1()
         self.coisas_Retangulo2()
+        self.montaTabelas()
         janela.mainloop()
     #Função responsável pela configuração da janela
     def config_tela(self):
