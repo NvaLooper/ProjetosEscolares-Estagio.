@@ -1,5 +1,5 @@
 #https://site112.com/tabela-cores-html -> Cores
-#https://www.youtube.com/playlist?list=PLqx8fDb-FZDFznZcXb_u_NyiQ7Nai674- -> Tutorial (4/50)
+#https://www.youtube.com/playlist?list=PLqx8fDb-FZDFznZcXb_u_NyiQ7Nai674- -> Tutorial (9/50)
 #Configuração:
 from tkinter import *
 from tkinter import ttk
@@ -18,7 +18,7 @@ class Funcs():
         self.cursor = self.conn.cursor(); print("\n------ ⌛ Conectando ao banco de dados ⌛ ------\n")
     def desconecta_bd(self):
         self.conn.close()
-        print("\n------ 🔌 Banco de dados desconectado 🔌 ----S--\n")
+        print("\n------ 🔌 Banco de dados desconectado 🔌 ------\n")
     def montaTabelas(self):
         self.conecta_bd() 
         #Criação da tabela
@@ -31,7 +31,28 @@ class Funcs():
             );
         """)
         self.conn.commit(); print("------ ✔️ Banco de dados criado ✔️  ------\n")
-        self.desconecta_bd
+        self.desconecta_bd()
+    def add_clientes(self):
+        self.codigoF = self.input_codigo.get()
+        self.nomeF = self.input_nome.get()
+        self.telefoneF = self.input_telefone.get()
+        self.cidadeF = self.input_cidade.get()
+        self.conecta_bd()
+        self.cursor.execute(""" INSERT INTO clientes (nome_cliente,telefone,cidade)
+            VALUES (?, ?, ?)""", (self.nomeF,self.telefoneF,self.cidadeF))
+        self.conn.commit()
+        self.desconecta_bd()
+        self.select_lista()
+        self.limpar_tela()
+    def select_lista(self):
+        self.lista.delete(*self.lista.get_children())
+        self.conecta_bd()
+        X = self.cursor.execute("""SELECT cod, nome_cliente, telefone, cidade FROM clientes
+        ORDER BY nome_cliente ASC; """)
+        for i in X:
+            self.lista.insert("", END, values=i)
+        self.desconecta_bd()
+
 #FrontEND
 class aplicativo(Funcs):
     #Função responsável por iniciar a janela
@@ -42,6 +63,7 @@ class aplicativo(Funcs):
         self.coisas_Retangulo1()
         self.coisas_Retangulo2()
         self.montaTabelas()
+        self.select_lista()
         janela.mainloop()
     #Função responsável pela configuração da janela
     def config_tela(self):
@@ -67,7 +89,7 @@ class aplicativo(Funcs):
         self.botao_buscar = Button(self.Retangulo_princ, text="Buscar",bd=2, bg= "#4682B4", fg="White",font=("Calibri",10,"bold"))
         self.botao_buscar.place(relx=0.28, rely=0.09, relheight=0.16, relwidth=0.12)
     #Botão novo:    
-        self.botao_novo = Button(self.Retangulo_princ, text="Novo",bd=2, bg="#4682B4", fg="White",font=("Calibri",10,"bold"))
+        self.botao_novo = Button(self.Retangulo_princ, text="Novo",bd=2, bg="#4682B4", fg="White",font=("Calibri",10,"bold"),command=self.add_clientes)
         self.botao_novo.place(relx=0.54, rely=0.09, relheight=0.16, relwidth=0.12)
     #Botão alterar:    
         self.botao_alterar = Button(self.Retangulo_princ, text="Alterar",bd=2, bg="#4682B4", fg="White",font=("Calibri",10,"bold"))
