@@ -13,13 +13,14 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Image
 import webbrowser
+from tkinter import messagebox
 janela = tix.Tk()
 #Relátorios(PDFs):
 class Relatorios():
     def print_clientes(self):
-        webbrowser.open("clientes.pdf")
+        webbrowser.open("cliente.pdf")
     def gerar_rel(self):
-        self.c = canvas.Canvas("clientes.pdf")
+        self.c = canvas.Canvas("cliente.pdf")
         self.rel_codigo = self.input_codigo.get()
         self.rel_nome = self.input_nome.get()
         self.rel_telefone = self.input_telefone.get()
@@ -87,7 +88,7 @@ class Funcs():
         self.conecta_bd() 
         #Criação da tabela
         self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS clientes (
+            CREATE TABLE IF NOT EXISTS cliente (
                 cod INTEGER PRIMARY KEY,
                 nome_cliente CHAR(40) NOT NULL,
                 telefone INTEGER(20),
@@ -98,17 +99,22 @@ class Funcs():
         self.desconecta_bd()
     def add_clientes(self):
         self.variaveis()
-        self.conecta_bd()
-        self.cursor.execute(""" INSERT INTO clientes (nome_cliente,telefone,cidade)
-            VALUES (?, ?, ?)""", (self.nomeF,self.telefoneF,self.cidadeF))
-        self.conn.commit()
-        self.desconecta_bd()
-        self.select_lista()
-        self.limpar_tela()
+        #Popup de aviso:
+        if self.input_nome.get() == "":
+            msg_nome = "Para cadastrar um novo cliente é necessário que seja digitado pelo menos um nome"
+            messagebox.showinfo("Aviso!!!",msg_nome)
+        else:   
+            self.conecta_bd()
+            self.cursor.execute(""" INSERT INTO cliente (nome_cliente,telefone,cidade)
+                VALUES (?, ?, ?)""", (self.nomeF,self.telefoneF,self.cidadeF))
+            self.conn.commit()
+            self.desconecta_bd()
+            self.select_lista()
+            self.limpar_tela()
     def select_lista(self):
         self.lista.delete(*self.lista.get_children())
         self.conecta_bd()
-        X = self.cursor.execute("""SELECT cod, nome_cliente, telefone, cidade FROM clientes
+        X = self.cursor.execute("""SELECT cod, nome_cliente, telefone, cidade FROM cliente
         ORDER BY nome_cliente ASC; """)
         for i in X:
             self.lista.insert("", END, values=i)
@@ -126,7 +132,7 @@ class Funcs():
     def deletar_cliente(self):
         self.variaveis()
         self.conecta_bd()
-        self.cursor.execute(""" DELETE FROM  clientes WHERE cod = ? """, (self.codigoF,))
+        self.cursor.execute(""" DELETE FROM  cliente WHERE cod = ? """, (self.codigoF,))
         self.conn.commit()
         self.desconecta_bd()
         self.limpar_tela()
@@ -135,7 +141,7 @@ class Funcs():
     def alterar_cliente(self):
         self.variaveis()
         self.conecta_bd()
-        self.cursor.execute(""" UPDATE clientes SET nome_cliente = ?, telefone = ?, cidade = ?
+        self.cursor.execute(""" UPDATE cliente SET nome_cliente = ?, telefone = ?, cidade = ?
         WHERE cod = ? """, (self.nomeF, self.telefoneF,self.cidadeF,self.codigoF))
         self.conn.commit()
         self.desconecta_bd()
@@ -147,7 +153,7 @@ class Funcs():
         self.lista.delete(*self.lista.get_children())
         self.input_nome.insert(END, '%')
         nomeB = self.input_nome.get()
-        self.cursor.execute(""" SELECT cod, nome_cliente, telefone, cidade FROM clientes
+        self.cursor.execute(""" SELECT cod, nome_cliente, telefone, cidade FROM cliente
         WHERE nome_cliente LIKE '%s' ORDER BY nome_cliente ASC """ % nomeB)
         buscanome = self.cursor.fetchall()
         for i in buscanome:
@@ -165,7 +171,7 @@ class aplicativo(Funcs,Relatorios):
         self.coisas_Retangulo2()
         self.montaTabelas()
         self.select_lista()
-        self.coisas_aba1()
+        self.coisas_aba2()
         self.menus()
         janela.mainloop()
     #Função responsável pela configuração da janela
@@ -261,7 +267,7 @@ class aplicativo(Funcs,Relatorios):
         self.input_nome = Entry(self.aba1,font=("Calibri",11), highlightbackground="Black", highlightthickness=1)
         self.input_nome.place(relx=0.085, rely=0.85, relwidth=0.57)
     #Função responsável pela criação das coisas na aba 1:
-    def coisas_aba1(self):
+    def coisas_aba2(self):
         self.botao_relatorio = Button(self.aba2, text=" ↓ Relatório ↓",bd=2, bg="#6495ED", fg="White",font=("Calibri",22,"bold"),
                         activebackground="#4682B4", activeforeground="White", command=self.gerar_rel)
         self.botao_relatorio.place(relx=0.25, rely=0.3, relheight=0.38, relwidth=0.5)
@@ -298,12 +304,18 @@ class aplicativo(Funcs,Relatorios):
         menu1 = Menu(barra_menu)
         menu2 = Menu(barra_menu)
         def Quit(): janela.destroy()
+        def versao():
+            msg_versao = "Versão 1.4.18"
+            messagebox.showinfo("Versão", msg_versao)
+        def programa():
+            msg_programa = "Programa criado por Vitor Silvares Guimarães com a ajuda do curso no youtube de tkinter do RfZorzi"
+            messagebox.showinfo("Programa", msg_programa)
         barra_menu.add_cascade(label ="Opções",menu= menu1)
         barra_menu.add_cascade(label = "Sobre",menu= menu2)
         menu1.add_command(label="Limpar Tela",command=self.limpar_tela)
         menu1.add_command(label="Sair",command=Quit)
-        menu2.add_command(label="Versão")
-        menu2.add_command(label="Programa")
+        menu2.add_command(label="Versão", command=versao)
+        menu2.add_command(label="Programa", command=programa)
 print("\n------ ⌛ Conectando ao banco de dados ⌛ ------\n")
 sleep(1)
 print("------ ✔️  Banco de dados conectado ✔️  ------\n")
