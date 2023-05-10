@@ -26,7 +26,7 @@ class Relatorios():
         self.rel_cidade = self.input_cidade.get()
         #Tamanho e tipo de letra do título:
         self.c.setFont("Helvetica-Bold",24)
-        self.c.drawString(200,790,'Ficha do Cliente')
+        self.c.drawString(200,780,'Ficha do Cliente')
         #Tamanho e tipo de letra do texto:
         self.c.setFont("Helvetica-Bold",18)
         self.c.drawString(50,700,'Código: ')
@@ -39,9 +39,28 @@ class Relatorios():
         self.c.drawString(150,660,self.rel_nome)
         self.c.drawString(150,620,self.rel_telefone)
         self.c.drawString(150,580,self.rel_cidade)
+        #Texto do relatório:
+        self.c.setFont("Helvetica-Bold",16)
+        self.c.drawString(358,129,'Assinatura cliente')
+        self.c.drawString(69,129,'Assinatura funcionario')
         #Criação do retangulo para espaçamento do texto:
-        self.c.rect(20, 740, 550, -185, fill=False, stroke=True)
-        self.c.rect(20, 530, 550, 4, fill=True, stroke=False)
+        self.c.rect(35, 740, 515, -185, fill=False, stroke=True)
+        self.c.rect(20, 520, 550, 4, fill=True, stroke=False)
+        #Criação do retangulo para a assinatura:
+        self.c.rect(330, 120, 200, -60, fill=False, stroke=True)
+        self.c.rect(60, 120, 200, -60, fill=False, stroke=True)
+        #Linhas para escrever no relatório:
+        self.c.rect(46, 480, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 450, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 420, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 390, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 360, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 330, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 300, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 270, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 240, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 210, 499, 1, fill=True, stroke=False)
+        self.c.rect(46, 180, 499, 1, fill=True, stroke=False)
         #Parte responsável por abrir a página e salvar o pdf
         self.c.showPage()
         self.c.save()
@@ -280,10 +299,11 @@ class aplicativo(Funcs,Relatorios):
         menu2 = Menu(barra_menu)
         def Quit(): janela.destroy()
         barra_menu.add_cascade(label ="Opções",menu= menu1)
-        barra_menu.add_cascade(label = "+",menu= menu2)
+        barra_menu.add_cascade(label = "Sobre",menu= menu2)
         menu1.add_command(label="Limpar Tela",command=self.limpar_tela)
         menu1.add_command(label="Sair",command=Quit)
-        menu2.add_command(label="Sobre")
+        menu2.add_command(label="Versão")
+        menu2.add_command(label="Programa")
 print("\n------ ⌛ Conectando ao banco de dados ⌛ ------\n")
 sleep(1)
 print("------ ✔️  Banco de dados conectado ✔️  ------\n")
