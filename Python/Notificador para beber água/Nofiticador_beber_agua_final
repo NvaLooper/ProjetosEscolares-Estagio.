@@ -1,0 +1,98 @@
+# ----> Configurações;
+from tkinter import *
+from playsound import playsound
+import sys
+from tkinter import messagebox
+# ----> Início do programa;
+class aplicativo():
+    def __init__(self):
+        self.Menu()
+        self.Tela_Menu()
+        
+        mainloop()
+    #Centralizar tela:  
+    def Centralizar(self,X,width=300, height=200):
+        Largura_Janela = X.winfo_screenwidth()
+        Altura_Janela = X.winfo_screenheight()
+        x = (Largura_Janela/2) - (width/2)
+        y = (Altura_Janela/2) - (height/2)
+        X.geometry('%dx%d+%d+%d' % (width, height, x, y))
+    #Configuração da janela menu:
+    def Menu(self):
+        self.MenuN = Tk()
+        self.Centralizar(self.MenuN,490,370)
+        self.MenuN.title("Notificador para beber água")
+        self.MenuN.configure(background="#4682B4")
+        self.MenuN.resizable(False, False)
+    #Configuração da janela do contador:
+    def Config(self):
+        self.config = Toplevel(self.MenuN)
+        self.Centralizar(self.config)
+        self.config.title("Configurações")
+        self.Centralizar(self.config,260,300)
+        self.config.configure(background="#C0C0C0")
+        self.config.resizable(False, False)
+        self.Tela_Configurações()
+    
+    def Tela_Menu(self):
+        #Retangulo para o título:
+        self.RetanguloT = Frame(self.MenuN, bd=4, bg="White", highlightbackground="Black",highlightthickness=3)
+        self.RetanguloT.place(relx=0.18, rely=0.05,relwidth=0.65, relheight=0.18)
+
+        #Retangulo para o texto:
+        self.RetanguloTx = Frame(self.MenuN, bd=4, bg="#4682B4", highlightbackground="Black",highlightthickness=1)
+        self.RetanguloTx.place(relx=0.24, rely=0.89,relwidth=0.50, relheight=0.08)
+
+        #Titulo:
+        self.TituloMenu = Label(self.RetanguloT,text="Notificador para beber água", bg="White", fg="Black",font=("Calibri",16,"bold"))
+        self.TituloMenu.place(relx=0.094, rely=0.18) 
+        self.GotaTitulo1 = Label(self.RetanguloT,text="💧", bg="White", fg="Blue", font=("Calibri",16))
+        self.GotaTitulo1.place(relx=0.90, rely=0.18) 
+        self.GotaTitulo2 = Label(self.RetanguloT,text="💧", bg="White", fg="Blue", font=("Calibri",16))
+        self.GotaTitulo2.place(relx=0.01, rely=0.18) 
+
+        #Texto:
+        self.CriadorP = Label(self.MenuN,text="Criado por:", bg="#4682B4", fg="Black",font=("Calibri",10))
+        self.CriadorP.place(relx=0.28, rely=0.9) 
+        self.Nome = Label(self.MenuN,text="Vitor Silvares Guimarães", bg="#4682B4", fg="Yellow",font=("Calibri",10))
+        self.Nome.place(relx=0.415, rely=0.9)
+
+        #Botões:
+        def iniciar_programa():
+            0
+        self.Botão_iniciar = Button(self.MenuN, text="Iniciar Contador",bd=2, bg="#32CD32", fg="White",font=("Calibri",12,"bold"), activebackground="#32CD32", activeforeground="White",command=iniciar_programa)
+        self.Botão_iniciar.place(relx=0.345, rely=0.36,relwidth=0.3, relheight=0.12)
+        def config_programa():
+            self.Config()
+        self.Botão_config = Button(self.MenuN, text="Configurações",bd=2, bg="#808080", fg="White",font=("Calibri",12,"bold"), activebackground="#A9A9A9", activeforeground="White",command=config_programa)
+        self.Botão_config.place(relx=0.345, rely=0.485,relwidth=0.3, relheight=0.12)
+        def fechar_programa(): 
+            agradecimentos = "Você deseja fechar o programa?"
+            X = messagebox.askyesno("Agradecimentos", agradecimentos)
+            if X == YES:
+                sys.exit()
+        self.Botão_fecharP = Button(self.MenuN, text="Fechar programa",bd=2, bg="Red", fg="White",font=("Calibri",12,"bold"), activebackground="Red", activeforeground="White",command=fechar_programa)
+        self.Botão_fecharP.place(relx=0.345, rely=0.61,relwidth=0.3, relheight=0.12)
+    
+
+    def Tela_Configurações(self):
+    #Texto:
+        self.TituloConfig = Label(self.config,text="⚙️ Configurações ⚙️", bg="#C0C0C0", fg="Black",font=("Calibri",16,"bold"))
+        self.TituloConfig.place(relx=0.135, rely=0.1) 
+    #Retangulo para os botões:
+        #self.RetanguloBt = Frame(self.config, bd=4, bg="#C0C0C0", highlightbackground="Black",highlightthickness=2)
+        #self.RetanguloBt.place(relx=0.29, rely=0.28,relwidth=0.448, relheight=0.446)
+
+
+    #Botões:
+        self.Botão_5min = Button(self.config, text="5 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White")
+        self.Botão_5min.place(relx=0.315, rely=0.435,relwidth=0.4, relheight=0.13)
+
+        self.Botão_15min = Button(self.config, text="15 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White")
+        self.Botão_15min.place(relx=0.315, rely=0.3,relwidth=0.4, relheight=0.13)
+
+        self.Botão_30min = Button(self.config, text="30 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White")
+        self.Botão_30min.place(relx=0.315, rely=0.572,relwidth=0.4, relheight=0.13)
+
+aplicativo()
+
