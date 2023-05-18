@@ -1,14 +1,23 @@
 # ----> Configurações;
 from tkinter import *
-from playsound import playsound
 import sys
 from tkinter import messagebox
+import time
+global temp_minutos, Minutos
+Minutos = 0
+temp_minutos = Minutos*60
+def Cronometro():
+    for x in range(temp_minutos,0,-1):
+            segundos = x % 60
+            minutoss = int (x/60) % 60
+            horas = int(x / 3600)
+            print(f"{horas:02}:{minutoss:02}:{segundos:02}")
+            time.sleep(1)
 # ----> Início do programa;
 class aplicativo():
     def __init__(self):
         self.Menu()
         self.Tela_Menu()
-        
         mainloop()
     #Centralizar tela:  
     def Centralizar(self,X,width=300, height=200):
@@ -24,25 +33,13 @@ class aplicativo():
         self.MenuN.title("Notificador para beber água")
         self.MenuN.configure(background="#4682B4")
         self.MenuN.resizable(False, False)
-    #Configuração da janela do contador:
-    def Config(self):
-        self.config = Toplevel(self.MenuN)
-        self.Centralizar(self.config)
-        self.config.title("Configurações")
-        self.Centralizar(self.config,260,300)
-        self.config.configure(background="#C0C0C0")
-        self.config.resizable(False, False)
-        self.Tela_Configurações()
-    
     def Tela_Menu(self):
         #Retangulo para o título:
         self.RetanguloT = Frame(self.MenuN, bd=4, bg="White", highlightbackground="Black",highlightthickness=3)
         self.RetanguloT.place(relx=0.18, rely=0.05,relwidth=0.65, relheight=0.18)
-
         #Retangulo para o texto:
         self.RetanguloTx = Frame(self.MenuN, bd=4, bg="#4682B4", highlightbackground="Black",highlightthickness=1)
         self.RetanguloTx.place(relx=0.24, rely=0.89,relwidth=0.50, relheight=0.08)
-
         #Titulo:
         self.TituloMenu = Label(self.RetanguloT,text="Notificador para beber água", bg="White", fg="Black",font=("Calibri",16,"bold"))
         self.TituloMenu.place(relx=0.094, rely=0.18) 
@@ -50,19 +47,23 @@ class aplicativo():
         self.GotaTitulo1.place(relx=0.90, rely=0.18) 
         self.GotaTitulo2 = Label(self.RetanguloT,text="💧", bg="White", fg="Blue", font=("Calibri",16))
         self.GotaTitulo2.place(relx=0.01, rely=0.18) 
-
         #Texto:
         self.CriadorP = Label(self.MenuN,text="Criado por:", bg="#4682B4", fg="Black",font=("Calibri",10))
         self.CriadorP.place(relx=0.28, rely=0.9) 
         self.Nome = Label(self.MenuN,text="Vitor Silvares Guimarães", bg="#4682B4", fg="Yellow",font=("Calibri",10))
         self.Nome.place(relx=0.415, rely=0.9)
-
         #Botões:
         def iniciar_programa():
-            0
+                if Minutos == 0:
+                    error = "Você deve selecionar um tempo antes de iniciar o contador"
+                    messagebox.showerror("Escolha um tempo", error)
+                else:
+                    self.MenuN.withdraw() #Esconde a janela
+                    self.Iniciar()
         self.Botão_iniciar = Button(self.MenuN, text="Iniciar Contador",bd=2, bg="#32CD32", fg="White",font=("Calibri",12,"bold"), activebackground="#32CD32", activeforeground="White",command=iniciar_programa)
-        self.Botão_iniciar.place(relx=0.345, rely=0.36,relwidth=0.3, relheight=0.12)
+        self.Botão_iniciar.place(relx=0.345, rely=0.358,relwidth=0.3, relheight=0.12)
         def config_programa():
+            self.MenuN.withdraw() #Esconde a janela
             self.Config()
         self.Botão_config = Button(self.MenuN, text="Configurações",bd=2, bg="#808080", fg="White",font=("Calibri",12,"bold"), activebackground="#A9A9A9", activeforeground="White",command=config_programa)
         self.Botão_config.place(relx=0.345, rely=0.485,relwidth=0.3, relheight=0.12)
@@ -73,26 +74,59 @@ class aplicativo():
                 sys.exit()
         self.Botão_fecharP = Button(self.MenuN, text="Fechar programa",bd=2, bg="Red", fg="White",font=("Calibri",12,"bold"), activebackground="Red", activeforeground="White",command=fechar_programa)
         self.Botão_fecharP.place(relx=0.345, rely=0.61,relwidth=0.3, relheight=0.12)
-    
-
+    #Configuração da janela do contador:
+    def Iniciar(self):
+        self.iniciar = Toplevel(self.MenuN)
+        self.iniciar.title("💧 Contador 💧")
+        self.Centralizar(self.iniciar,360,300)
+        self.iniciar.configure(background="White")
+        self.iniciar.resizable(False, False)
+        self.Tela_Iniciar()
+    def Tela_Iniciar(self):
+        self.cronometro = Label(self.iniciar,text=Cronometro(), bg="White", fg="Black",font=("Calibri",32))
+        self.cronometro.place(relx=0.27, rely=0.07) 
+        def Bt_voltarI():
+            self.iniciar.destroy()
+            self.MenuN.deiconify()
+        self.Botão_voltar = Button(self.iniciar, text="←",bd=2, bg="Red", fg="White",font=("Calibri",14,"bold"), activebackground="Red", activeforeground="White",command=Bt_voltarI)
+        self.Botão_voltar.place(relx=0.02, rely=0.89,relwidth=0.14, relheight=0.09)
+    #Configuração da janela das configurações:
+    def Config(self):
+        self.config = Toplevel(self.MenuN)
+        self.config.title("Configurações")
+        self.Centralizar(self.config,260,300)
+        self.config.configure(background="White")
+        self.config.resizable(False, False)
+        self.Tela_Configurações()
     def Tela_Configurações(self):
+    #Título:
+        self.TituloConfig = Label(self.config,text="⚙️ Configurações ⚙️", bg="White", fg="Black",font=("Calibri",16,"bold"))
+        self.TituloConfig.place(relx=0.135, rely=0.06)
     #Texto:
-        self.TituloConfig = Label(self.config,text="⚙️ Configurações ⚙️", bg="#C0C0C0", fg="Black",font=("Calibri",16,"bold"))
-        self.TituloConfig.place(relx=0.135, rely=0.1) 
+        self.TextoConfig = Label(self.config,text="Escolha o tempo desejado para ser \navisado de beber água:", bg="White", fg="Black",font=("Calibri",12))
+        self.TextoConfig.place(relx=0.05, rely=0.21)
     #Retangulo para os botões:
-        #self.RetanguloBt = Frame(self.config, bd=4, bg="#C0C0C0", highlightbackground="Black",highlightthickness=2)
+        #self.RetanguloBt = Frame(self.config, bd=4, bg="White", highlightbackground="Black",highlightthickness=2)
         #self.RetanguloBt.place(relx=0.29, rely=0.28,relwidth=0.448, relheight=0.446)
-
-
     #Botões:
-        self.Botão_5min = Button(self.config, text="5 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White")
-        self.Botão_5min.place(relx=0.315, rely=0.435,relwidth=0.4, relheight=0.13)
-
-        self.Botão_15min = Button(self.config, text="15 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White")
-        self.Botão_15min.place(relx=0.315, rely=0.3,relwidth=0.4, relheight=0.13)
-
-        self.Botão_30min = Button(self.config, text="30 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White")
-        self.Botão_30min.place(relx=0.315, rely=0.572,relwidth=0.4, relheight=0.13)
-
+        def Bt_5():
+            global Minutos
+            Minutos == 5
+        self.Botão_5min = Button(self.config, text="5 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White",command=Bt_5)
+        self.Botão_5min.place(relx=0.305, rely=0.43,relwidth=0.4, relheight=0.13)
+        def Bt_15():
+            global Minutos
+            Minutos == 15
+        self.Botão_15min = Button(self.config, text="15 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White",command=Bt_15)
+        self.Botão_15min.place(relx=0.305, rely=0.565,relwidth=0.4, relheight=0.13)
+        def Bt_30():
+            global Minutos
+            Minutos == 30
+        self.Botão_30min = Button(self.config, text="30 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White",command=Bt_30)
+        self.Botão_30min.place(relx=0.305, rely=0.698,relwidth=0.4, relheight=0.13)
+        def Bt_voltarC():
+            self.config.destroy()
+            self.MenuN.deiconify()
+        self.Botão_voltar = Button(self.config, text="←",bd=2, bg="Red", fg="White",font=("Calibri",14,"bold"), activebackground="Red", activeforeground="White",command=Bt_voltarC)
+        self.Botão_voltar.place(relx=0.02, rely=0.89,relwidth=0.14, relheight=0.09)
 aplicativo()
-
