@@ -83,7 +83,7 @@ class aplicativo():
         self.iniciar.resizable(False, False)
         self.Tela_Iniciar()
     def Tela_Iniciar(self):
-        self.cronometro = Label(self.iniciar,text=Cronometro(), bg="White", fg="Black",font=("Calibri",32))
+        self.cronometro = Label(self.iniciar,text=Minutos, bg="White", fg="Black",font=("Calibri",32))
         self.cronometro.place(relx=0.27, rely=0.07) 
         def Bt_voltarI():
             self.iniciar.destroy()
@@ -111,17 +111,17 @@ class aplicativo():
     #Botões:
         def Bt_5():
             global Minutos
-            Minutos == 5
+            Minutos = 5
         self.Botão_5min = Button(self.config, text="5 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White",command=Bt_5)
         self.Botão_5min.place(relx=0.305, rely=0.43,relwidth=0.4, relheight=0.13)
         def Bt_15():
             global Minutos
-            Minutos == 15
+            Minutos = 15
         self.Botão_15min = Button(self.config, text="15 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White",command=Bt_15)
         self.Botão_15min.place(relx=0.305, rely=0.565,relwidth=0.4, relheight=0.13)
         def Bt_30():
             global Minutos
-            Minutos == 30
+            Minutos = 30
         self.Botão_30min = Button(self.config, text="30 minutos",bd=2, bg="#4682B4", fg="White",font=("Calibri",12,"bold"), activebackground="#4682B4", activeforeground="White",command=Bt_30)
         self.Botão_30min.place(relx=0.305, rely=0.698,relwidth=0.4, relheight=0.13)
         def Bt_voltarC():
